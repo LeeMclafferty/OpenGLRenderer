@@ -2,7 +2,6 @@
 #include "Engine.h"
 #include <iostream>
 
-#include "StaticHelpers/ShaderHelpers.h"
 #include "../Time/TimeManager.h"
 #include "Texture/Texture.h"
 
@@ -25,6 +24,4 @@ void Engine::MainLoop()
 		glfwSwapBuffers(window);
 		glfwPollEvents();
 	}
-
-	glDeleteProgram(objectRenderer.GetShaderProgram());
 }

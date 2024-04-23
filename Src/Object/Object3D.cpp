@@ -1,7 +1,7 @@
 #include "Object/Object3D.h"
 #include <gtc/matrix_transform.hpp>
 
-#include "StaticHelpers/ShaderHelpers.h"
+#include "../Shader/ShaderHelpers.h"
 
 Object3D::Object3D()
 	:
@@ -75,7 +75,6 @@ void Object3D::Rotate(glm::vec2 deltas)
 	TransformObject();
 	UpdateLocalVectors();
 }
-
 
 void Object3D::UpdateLocalVectors() 
 {

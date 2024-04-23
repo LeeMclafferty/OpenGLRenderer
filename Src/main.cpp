@@ -13,7 +13,7 @@ int main(void)
 	if (!glfwInit())
 		return -1;
 
-	window = glfwCreateWindow(windowWidth, windowHeight, "The 3D Cube", NULL, NULL);
+	window = glfwCreateWindow(windowWidth, windowHeight, "Open GL Renderer", NULL, NULL);
 
 	if (!window)
 	{

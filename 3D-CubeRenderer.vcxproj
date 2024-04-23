@@ -165,7 +165,7 @@
     <ClCompile Include="Src\Core\Camera.cpp" />
     <ClCompile Include="Src\Core\Input\InputHandler.cpp" />
     <ClCompile Include="Src\Object\Components\BufferManager.cpp" />
-    <ClCompile Include="Src\3D-CubeRenderer.cpp" />
+    <ClCompile Include="Src\main.cpp" />
     <ClCompile Include="Src\Core\ObjectRenderer.cpp" />
     <ClCompile Include="Src\Core\Engine.cpp" />
     <ClCompile Include="Src\stb_image\stb_image.cpp" />
@@ -183,7 +183,7 @@
     <ClInclude Include="Src\PremadeShapes\ShapeData.h" />
     <ClInclude Include="Src\Core\ObjectRenderer.h" />
     <ClInclude Include="Src\Core\Engine.h" />
-    <ClInclude Include="Src\StaticHelpers\ShaderHelpers.h" />
+    <ClInclude Include="Src\Shader\ShaderHelpers.h" />
     <ClInclude Include="Src\stb_image\stb_image.h" />
     <ClInclude Include="Src\Vertex\Vertex.h" />
     <ClInclude Include="Src\Time\TimeManager.h" />

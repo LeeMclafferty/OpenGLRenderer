@@ -63,4 +63,12 @@ void BufferManager::CreateLightSourceOnGPU(const std::vector<Vertex> vertices, s
 	// Normals attribute
 	glEnableVertexAttribArray(3); // Note the index is 3 here if texture coordinates are used
 	glVertexAttribPointer(3, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)(sizeof(GLfloat) * 9));
+} 
+
+BufferManager::~BufferManager() 
+{
+	glDeleteBuffers(1, &VBO);
+	glDeleteVertexArrays(1, &VAO);
+	glDeleteBuffers(1, &EBO);
+	glDeleteProgram(shaderProgram);
 }

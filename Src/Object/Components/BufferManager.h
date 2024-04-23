@@ -8,6 +8,7 @@ struct Vertex;
 class BufferManager
 {
 public:
+	~BufferManager();
 	void CreateObjectOnGPU(const std::vector<Vertex> vertices, size_t vertexCount, const std::vector<GLuint> indices, size_t indexCount);
 	void CreateLightSourceOnGPU(const std::vector<Vertex> vertices, size_t vertexCount, const std::vector<GLuint> indices, size_t indexCount);
 
