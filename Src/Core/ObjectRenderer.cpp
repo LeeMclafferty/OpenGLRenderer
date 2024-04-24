@@ -86,8 +86,6 @@ void ObjectRenderer::DrawObject(Object3D& object)
 {
 	glUseProgram(object.GetShaderProgram());
 
-	SetUniforms(object.GetShaderProgram());
-
 	SendProjectionData(object.GetShaderProgram(), 60.f, GetAspectRatio(), .01f, 1000.f);
 	SetUniforms(object.GetShaderProgram());
 	ShaderHelpers::SetUniformMatrix4(object.GetShaderProgram(), "viewMatrix", camera->GetViewMatrix());

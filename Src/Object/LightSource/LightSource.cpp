@@ -6,16 +6,6 @@ LightSource::LightSource()
 
 }
 
-void LightSource::CreateShapeOnGPU()
-{
-	bufferManager.CreateLightSourceOnGPU(
-		shapeData.verticies,
-		shapeData.numVertex,
-		shapeData.indices,
-		shapeData.numIndices
-	);
-}
-
 void LightSource::Orbit(const glm::vec3& centerVec, float orbitRadius, float deltaTime, float speed)
 {
 	static float angle = 0.0f;
