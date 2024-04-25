@@ -2,7 +2,7 @@
 #include "Engine.h"
 #include <iostream>
 
-#include "../Time/TimeManager.h"
+#include "Time/TimeManager.h"
 #include "Texture/Texture.h"
 
 Engine::Engine(GLFWwindow* glWin)

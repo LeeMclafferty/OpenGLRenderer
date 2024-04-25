@@ -5,8 +5,8 @@
 #include <glm.hpp>
 #include <matrix_transform.hpp>
 
-#include "../ObjectRenderer.h"
-#include "../Camera.h"
+#include "ObjectRenderer.h"
+#include "Camera.h"
 #include "Object/Object3D.h"
 
 /* Static member functions cannot access non-static members. Creating static pointer to self to access members.*/

@@ -25,15 +25,6 @@ void ObjectRenderer::Draw()
 	DrawObject(cubeObject);
 }
 
-float ObjectRenderer::GetAspectRatio()
-{
-	if (!window) return -1.f;
-
-	int width, height;
-	glfwGetFramebufferSize(window, &width, &height);
-	return width / (float)height;
-}
-
 /* Setup Projection Matrix and send data to shader's uniform variable */
 void ObjectRenderer::SendProjectionData(GLuint shaderProgram, float fov, float aspectRatio, float nearPlane, float farPlane)
 {
@@ -86,7 +77,10 @@ void ObjectRenderer::DrawObject(Object3D& object)
 {
 	glUseProgram(object.GetShaderProgram());
 
-	SendProjectionData(object.GetShaderProgram(), 60.f, GetAspectRatio(), .01f, 1000.f);
+	int w = 0, h = 0;
+	float AspectRatio = utilties.GetAspectRatio(window, w, h);
+
+	SendProjectionData(object.GetShaderProgram(), 60.f, AspectRatio, .01f, 1000.f);
 	SetUniforms(object.GetShaderProgram());
 	ShaderHelpers::SetUniformMatrix4(object.GetShaderProgram(), "viewMatrix", camera->GetViewMatrix());
 	UpdateNormalUniform(object.GetShaderProgram(), object);

@@ -4,9 +4,9 @@
 #include <string>
 #include <vector>
 #include <gtc/quaternion.hpp>
-#include "Object/Components/BufferManager.h"
 #include "Object/TexturedObject/TexturedObject.h"
 #include "Object/LightSource/LightSource.h"
+#include "Utilities/Utilities.h"
 
 class Camera;
 
@@ -23,9 +23,10 @@ private:
 
 	GLFWwindow* window;
 	Camera* camera;
-	float GetAspectRatio();
 	TexturedObject cubeObject;
 	LightSource lightSource;
+	Utilities utilties;
+
 	
 	void SendProjectionData(GLuint shaderProgram, float fov, float aspectRatio, float nearPlane, float farPlane);
 	void SetupCube();
