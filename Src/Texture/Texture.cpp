@@ -44,8 +44,6 @@ void Texture::GenTexture(const char* path)
 		glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
 		glTexImage2D(GL_TEXTURE_2D, 0, format, width, height, 0, format, GL_UNSIGNED_BYTE, tData);
 		glGenerateMipmap(GL_TEXTURE_2D);
-
-		std::cout << "Succeeded to load texture: " << path << std::endl;
 	}
 	else
 	{

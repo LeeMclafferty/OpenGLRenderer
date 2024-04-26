@@ -3,17 +3,26 @@
 #include <gtc/matrix_transform.hpp>
 #include <gtc/quaternion.hpp>
 #include <GLFW/glfw3.h>
+#include <glm.hpp>
+#include <gtc/matrix_transform.hpp>
+#include <iostream>
 
-#include "../Time/TimeManager.h"
+#include "Time/TimeManager.h"
+#include "Utilities/Utilities.h"
 
 Camera::Camera()
 	: globalPosition(glm::vec3(0.0f, 0.0f, 0.0f)),
 	lookSensitivity(1.f),
 	moveSensitivity(5.f),
-	cameraSpeed(0.1f), 
-	forwardVector(glm::vec3(0.0f, 0.0f, -1.0f)), 
-	upVector(glm::vec3(0.0f, 1.0f, 0.0f)) 
+	cameraSpeed(0.1f),
+	forwardVector(glm::vec3(0.0f, 0.0f, -1.0f)),
+	upVector(glm::vec3(0.0f, 1.0f, 0.0f)),
+	fov(60.f),
+	aspectRatio(0.f),
+	nearPlane(0.01f),
+	farPlane(500.f)
 {
+
 }
 
 glm::vec3 Camera::GetCameraForward() const
@@ -38,6 +47,16 @@ glm::mat4 Camera::GetViewMatrix() const
 		globalPosition + forwardVector,
 		upVector
 	);
+}
+
+void Camera::SetAspectRatio(float ratio)
+{
+	this->aspectRatio = ratio;
+}
+
+void Camera::UpdateProjectionMatrix()
+{
+	projectionMatrix = glm::perspective(glm::radians(fov), aspectRatio, nearPlane, farPlane);
 }
 
 void Camera::Rotate(glm::vec2 mouseDeltas) 

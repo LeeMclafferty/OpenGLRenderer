@@ -1,7 +1,8 @@
 #include "Object/Object3D.h"
 #include <gtc/matrix_transform.hpp>
 
-#include "../Shader/ShaderHelpers.h"
+#include "Shader/ShaderHelpers.h"
+#include "PremadeShapes/PremadeShapes.h"
 
 Object3D::Object3D()
 	:
@@ -17,6 +18,15 @@ Object3D::Object3D()
 	objectForwardVector(glm::vec3(0.f, 0.f, -1)),
 	objectRightVector(glm::vec3(1.f, 0.f, 0.f))
 {
+	size_t vertexCount = PremadeShapes::cubeVertices.size();
+	size_t indexCount = PremadeShapes::cubeIndices.size();
+	SetShapeData(
+		PremadeShapes::cubeVertices, PremadeShapes::cubeIndices,
+		vertexCount, indexCount
+	);
+	SetShaderProgram(CreateShaderProgram("Resources/Shaders/Basic.shader"));
+	CreateShapeOnGPU();
+
 }
 
 void Object3D::SetShapeData(std::vector<Vertex> verticies, std::vector<GLuint> indicies, size_t vertexCount, size_t indexCount)
@@ -37,7 +47,7 @@ void Object3D::CreateShapeOnGPU()
 	);
 }
 
-glm::mat4 Object3D::GetTransformationMatrix() 
+glm::mat4 Object3D::GetTransformationMatrix() const
 {
 	glm::mat4 scaleMatrix = glm::scale(glm::mat4(1.0f), scale);
 	glm::mat4 rotMatrix = glm::mat4_cast(rotation);
@@ -81,5 +91,15 @@ void Object3D::UpdateLocalVectors()
 	objectForwardVector = rotation * glm::vec3(0.0, 0.0, -1.0);
 	objectUpVector = rotation * glm::vec3(0.0, 1.0, 0.0);
 	objectRightVector = rotation * glm::vec3(1.0, 0.0, 0.0);
+}
+
+GLuint Object3D::CreateShaderProgram(const std::string path)
+{
+	ShaderHelpers::ShaderSource source = ShaderHelpers::ParseShader(path);
+	
+	return ShaderHelpers::CreateShader(
+		source.vertexSource,
+		source.fragmentSource
+	);
 }
 

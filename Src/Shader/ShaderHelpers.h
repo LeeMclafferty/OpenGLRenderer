@@ -16,7 +16,7 @@ namespace ShaderHelpers
 		std::string fragmentSource;
 	};
 
-	/* All memebers of static class must be static */
+	/* All members of static class must be static */
 	static ShaderSource ParseShader(const std::string& filePath)
 	{
 
@@ -163,6 +163,9 @@ namespace ShaderHelpers
 
 		glDeleteShader(vs);
 		glDeleteShader(fs);
+
+		std::cout << vertexShader << "\n";
+		std::cout << fragmentShader << "\n";
 
 		return shaderProgram;
 	}

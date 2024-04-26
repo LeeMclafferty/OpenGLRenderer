@@ -2,7 +2,7 @@
 #include <iostream>
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
-#include "Core/Engine.h"
+#include "Core/Engine/Engine.h"
 
 int main(void)
 {

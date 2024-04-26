@@ -6,7 +6,7 @@
 
 namespace PremadeShapes
 {
-	std::vector<Vertex> cubeVertices = {
+	static std::vector<Vertex> cubeVertices = {
 		// Front Blue
 		Vertex(glm::vec3(-0.5f, -0.5f,  0.5f), Color(0.0f, 0.0f, 1.0f, 1.0f), glm::vec2(1.0f, 0.0f), glm::vec3(0.0f, 0.0f, 1.0f)),
 		Vertex(glm::vec3( 0.5f, -0.5f,  0.5f), Color(0.0f, 0.0f, 1.0f, 1.0f), glm::vec2(0.0f, 0.0f), glm::vec3(0.0f, 0.0f, 1.0f)),
@@ -44,7 +44,7 @@ namespace PremadeShapes
 		Vertex(glm::vec3( 0.5f, -0.5f,  0.5f), Color(1.0f, 1.0f, 0.0f, 1.0f), glm::vec2(1.0f, 1.0f), glm::vec3(0.0f, -1.0f, 0.0f))
 	};
 
-	std::vector<Vertex> LightSource = {
+	static std::vector<Vertex> lightSource = {
 		// Front
 		Vertex(glm::vec3(-0.5f, -0.5f,  0.5f), Color(1.0f, 1.0f, 1.0f, 1.0f), glm::vec2(1.0f, 0.0f), glm::vec3(0.0f, 0.0f, 1.0f)),
 		Vertex(glm::vec3( 0.5f, -0.5f,  0.5f), Color(1.0f, 1.0f, 1.0f, 1.0f), glm::vec2(0.0f, 0.0f), glm::vec3(0.0f, 0.0f, 1.0f)),
@@ -82,7 +82,7 @@ namespace PremadeShapes
 		Vertex(glm::vec3(0.5f, -0.5f,  0.5f),  Color(1.0f, 1.0f, 1.0f, 1.0f), glm::vec2(1.0f, 1.0f), glm::vec3(0.0f, -1.0f, 0.0f))
 	};
 
-	std::vector<unsigned int> cubeIndices = {
+	static std::vector<unsigned int> cubeIndices = {
 		// Front face 
 		1,3,0,
 		3,2,0,
@@ -103,7 +103,7 @@ namespace PremadeShapes
 		23,22,20
 	};
 
-	std::vector<Vertex> recVertices {
+	static std::vector<Vertex> recVertices {
 		// Position								// Color
 		Vertex(glm::vec3(+0.5f, -0.5f, 0.0f),  Color(1.0f, 0.0f, 0.0f, 1.0f)), // bottom right
 		Vertex(glm::vec3(+0.5f, +0.5f, 0.0f),  Color(1.0f, 0.0f, 0.0f, 1.0f)), // top right
@@ -111,12 +111,12 @@ namespace PremadeShapes
 		Vertex(glm::vec3(-0.5f, +0.5f, 0.0f),  Color(0.0f, 0.0f, 1.0f, 1.0f)), // top left
 	};
 
-	GLuint recIndices[6] = {
+	static GLuint recIndices[6] = {
 	0, 1, 3, // Top right tri
 	1, 2, 3 // Bottom left tri
 	};
 
-	std::vector<Vertex> doubleTriangleVerticies {
+	static std::vector<Vertex> doubleTriangleVerticies {
 		// Triangle 1
 		// Position						//Color
 		Vertex(glm::vec3(-1.0, +1.0, -0.5f),  Color(0.0f, 1.0f, 0.8f, 1.0f)), // Left
@@ -130,21 +130,21 @@ namespace PremadeShapes
 		Vertex(glm::vec3(+1.0, -1.0, +0.5f), Color(0.5f, 0.6f, 1.0f, 1.0f)), // Right
 	};
 
-	std::vector<GLuint> doubleTriangleIndicies {
+	static std::vector<GLuint> doubleTriangleIndicies {
 		// Triangle 1
 		0, 1, 2,
 		// Triangle 2
 		3, 4, 5
 	};
 
-	std::vector<Vertex> triangleVerticies {
+	static std::vector<Vertex> triangleVerticies {
 		// Position								//Color
 		Vertex(glm::vec3(-1.0, -1.0, +0.5f),  Color(1.0f, 0.0f, 0.6f, 1.0f)), // Left
 		Vertex(glm::vec3(0.0, +1.0, +0.5f),   Color(0.1f, 0.6f, 1.0f, 1.0f)), // Top
 		Vertex(glm::vec3(+1.0, -1.0, +0.5f),  Color(0.6f, 0.0f, 1.0f, 1.0f)), // Right
 	};
 
-	std::vector<GLuint> triangleIndicies {
+	static std::vector<GLuint> triangleIndicies {
 		0, 1 ,2,
 	};
 };

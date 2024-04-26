@@ -25,16 +25,9 @@ private:
 	Camera* camera;
 	TexturedObject cubeObject;
 	LightSource lightSource;
-	Utilities utilties;
-
-	
-	void SendProjectionData(GLuint shaderProgram, float fov, float aspectRatio, float nearPlane, float farPlane);
-	void SetupCube();
-	void SetupLightSource();
+	Utilities utilities;
 
 	void DrawObject(Object3D& object);
-
-	void UpdateNormalUniform(GLuint shaderProgram, Object3D& obj);
-	void SetUniforms(GLuint shaderProgram);
+	void UpdateShaderUniforms(GLuint shaderProgram, Object3D& object);
 };
 
