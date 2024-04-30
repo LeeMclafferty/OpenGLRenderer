@@ -1,7 +1,10 @@
 #include "ShaderManager.h"
 
 #include "Object/Object3D.h"
+#include "Object/LightSource/LightSource.h"
 #include "Shader/ShaderHelpers.h"
+#include "Camera.h"
+#include "Utilities/Utilities.h"
 
 
 ShaderManager::ShaderSource ShaderManager::ParseShader(const std::string& filePath)
@@ -153,19 +156,30 @@ GLuint ShaderManager::CreateShader(const std::string& vertexShader, const std::s
 	return shaderProgram;
 }
 
-// void ShaderManager::UpdateShaderUniforms(GLuint shaderProgram, Object3D& object)
-// {
-// 	camera->UpdateProjectionMatrix();
-// 	ShaderHelpers::SetUniformMatrix4(shaderProgram, "projectionMatrix", camera->GetProjectionMatrix());
-// 	ShaderHelpers::SetUniformMatrix4(shaderProgram, "viewMatrix", camera->GetViewMatrix());
-// 	ShaderHelpers::SetUniformVec4(cubeObject.GetShaderProgram(), "lightingColor", lightSource.GetColor());
-// 	ShaderHelpers::SetUniformSampler2D(shaderProgram, "textureImg");
-// 	ShaderHelpers::SetUniformVec3(shaderProgram, "lightPos", lightSource.GetPosition());
-// 	ShaderHelpers::SetUniformVec3(shaderProgram, "cameraPos", camera->GetGlobalPosition());
-// 
-// 	glm::mat4 modelMatrix = object.GetTransformationMatrix();
-// 	glm::mat3 normalMatrix = glm::transpose(glm::inverse(glm::mat3(modelMatrix)));
-// 	ShaderHelpers::SetUniformMatrix3(shaderProgram, "normalMatrix", normalMatrix);
-// }
+void ShaderManager::UpdateShaderUniforms(GLuint shaderProgram, Object3D& object, GLFWwindow* win, LightSource& lightSource, Camera* camera)
+{
+	if (!camera || !win)
+		return;
+
+	Utilities utilities;
+
+	if (camera)
+	{
+		int w = 0, h = 0;
+		camera->SetAspectRatio(utilities.GetAspectRatio(win, w, h));
+	}
+
+	camera->UpdateProjectionMatrix();
+	ShaderHelpers::SetUniformMatrix4(shaderProgram, "projectionMatrix", camera->GetProjectionMatrix());
+	ShaderHelpers::SetUniformMatrix4(shaderProgram, "viewMatrix", camera->GetViewMatrix());
+	ShaderHelpers::SetUniformVec4(object.GetShaderProgram(), "lightingColor", lightSource.GetColor());
+	ShaderHelpers::SetUniformSampler2D(shaderProgram, "textureImg");
+	ShaderHelpers::SetUniformVec3(shaderProgram, "lightPos", lightSource.GetPosition());
+	ShaderHelpers::SetUniformVec3(shaderProgram, "cameraPos", camera->GetGlobalPosition());
+
+	glm::mat4 modelMatrix = object.GetTransformationMatrix();
+	glm::mat3 normalMatrix = glm::transpose(glm::inverse(glm::mat3(modelMatrix)));
+	ShaderHelpers::SetUniformMatrix3(shaderProgram, "normalMatrix", normalMatrix);
+}
 
 

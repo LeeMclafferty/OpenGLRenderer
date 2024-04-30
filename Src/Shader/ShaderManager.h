@@ -8,6 +8,10 @@
 #include <sstream>
 #include <iostream>
 
+class LightSource;
+class Object3D;
+class Camera;
+
 class ShaderManager
 {
 	struct ShaderSource
@@ -27,7 +31,7 @@ public:
 	void SetUniformSampler2D(GLuint shader, std::string uniformName);
 	unsigned int CompileShader(unsigned int glType, const std::string& source);
 	GLuint CreateShader(const std::string& vertexShader, const std::string& fragmentShader);
-	//void UpdateShaderUniforms(GLuint shaderProgram, Object3D& object);
+	void UpdateShaderUniforms(GLuint shaderProgram, Object3D& object, GLFWwindow* win, LightSource& lightSource, Camera* camera);
 
 };
 

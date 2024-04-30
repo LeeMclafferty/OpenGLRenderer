@@ -7,6 +7,7 @@
 #include "Object/TexturedObject/TexturedObject.h"
 #include "Object/LightSource/LightSource.h"
 #include "Utilities/Utilities.h"
+#include "Shader/ShaderManager.h"
 
 class Camera;
 
@@ -26,8 +27,8 @@ private:
 	TexturedObject cubeObject;
 	LightSource lightSource;
 	Utilities utilities;
+	ShaderManager shaderManager;
 
 	void DrawObject(Object3D& object);
-	void UpdateShaderUniforms(GLuint shaderProgram, Object3D& object);
 };
 
