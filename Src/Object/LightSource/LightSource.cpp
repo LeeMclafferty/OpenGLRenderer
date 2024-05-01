@@ -1,5 +1,4 @@
 #include "LightSource.h"
-#include "Shader/ShaderHelpers.h"
 #include "PremadeShapes/PremadeShapes.h"
 
 LightSource::LightSource()

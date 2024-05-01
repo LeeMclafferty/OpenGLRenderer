@@ -2,7 +2,7 @@
 
 #include "Object/Object3D.h"
 #include "Object/LightSource/LightSource.h"
-#include "Shader/ShaderHelpers.h"
+
 #include "Camera.h"
 #include "Utilities/Utilities.h"
 
@@ -170,16 +170,16 @@ void ShaderManager::UpdateShaderUniforms(GLuint shaderProgram, Object3D& object,
 	}
 
 	camera->UpdateProjectionMatrix();
-	ShaderHelpers::SetUniformMatrix4(shaderProgram, "projectionMatrix", camera->GetProjectionMatrix());
-	ShaderHelpers::SetUniformMatrix4(shaderProgram, "viewMatrix", camera->GetViewMatrix());
-	ShaderHelpers::SetUniformVec4(object.GetShaderProgram(), "lightingColor", lightSource.GetColor());
-	ShaderHelpers::SetUniformSampler2D(shaderProgram, "textureImg");
-	ShaderHelpers::SetUniformVec3(shaderProgram, "lightPos", lightSource.GetPosition());
-	ShaderHelpers::SetUniformVec3(shaderProgram, "cameraPos", camera->GetGlobalPosition());
+	SetUniformMatrix4(shaderProgram, "projectionMatrix", camera->GetProjectionMatrix());
+	SetUniformMatrix4(shaderProgram, "viewMatrix", camera->GetViewMatrix());
+	SetUniformVec4(object.GetShaderProgram(), "lightingColor", lightSource.GetColor());
+	SetUniformSampler2D(shaderProgram, "textureImg");
+	SetUniformVec3(shaderProgram, "lightPos", lightSource.GetPosition());
+	SetUniformVec3(shaderProgram, "cameraPos", camera->GetGlobalPosition());
 
 	glm::mat4 modelMatrix = object.GetTransformationMatrix();
 	glm::mat3 normalMatrix = glm::transpose(glm::inverse(glm::mat3(modelMatrix)));
-	ShaderHelpers::SetUniformMatrix3(shaderProgram, "normalMatrix", normalMatrix);
+	SetUniformMatrix3(shaderProgram, "normalMatrix", normalMatrix);
 }
 
 

@@ -14,13 +14,14 @@ class Camera;
 
 class ShaderManager
 {
+
+public:
 	struct ShaderSource
 	{
 		std::string vertexSource;
 		std::string fragmentSource;
 	};
 
-public:
 	ShaderSource ParseShader(const std::string& filePath);
 	bool LinkedSuccessfully(int& result, const GLuint& id);
 	static bool CompiledSuccessfully(int& result, const GLuint& id, const GLuint& glType);

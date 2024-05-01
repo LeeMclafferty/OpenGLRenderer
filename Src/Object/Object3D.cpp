@@ -1,7 +1,7 @@
 #include "Object/Object3D.h"
 #include <gtc/matrix_transform.hpp>
 
-#include "Shader/ShaderHelpers.h"
+#include "Shader/ShaderManager.h"
 #include "PremadeShapes/PremadeShapes.h"
 
 Object3D::Object3D()
@@ -60,7 +60,8 @@ glm::mat4 Object3D::GetTransformationMatrix() const
 void Object3D::TransformObject() 
 {
 	glm::mat4 transformationMatrix = GetTransformationMatrix();
-	ShaderHelpers::SetUniformMatrix4(bufferManager.GetShaderProgram(), "modelTransformMatrix", transformationMatrix);
+	ShaderManager shaderManager;
+	shaderManager.SetUniformMatrix4(bufferManager.GetShaderProgram(), "modelTransformMatrix", transformationMatrix);
 }
 
 /*
@@ -95,9 +96,10 @@ void Object3D::UpdateLocalVectors()
 
 GLuint Object3D::CreateShaderProgram(const std::string path)
 {
-	ShaderHelpers::ShaderSource source = ShaderHelpers::ParseShader(path);
+	ShaderManager shaderManager;
+	ShaderManager::ShaderSource source = shaderManager.ParseShader(path);
 	
-	return ShaderHelpers::CreateShader(
+	return shaderManager.CreateShader(
 		source.vertexSource,
 		source.fragmentSource
 	);

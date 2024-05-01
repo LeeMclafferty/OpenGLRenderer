@@ -187,7 +187,6 @@
     <ClInclude Include="Src\PremadeShapes\ShapeData.h" />
     <ClInclude Include="Src\Core\Renderer\ObjectRenderer.h" />
     <ClInclude Include="Src\Core\Engine\Engine.h" />
-    <ClInclude Include="Src\Shader\ShaderHelpers.h" />
     <ClInclude Include="Src\stb_image\stb_image.h" />
     <ClInclude Include="Src\Vertex\Vertex.h" />
     <ClInclude Include="Src\Time\TimeManager.h" />
