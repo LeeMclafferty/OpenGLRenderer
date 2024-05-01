@@ -1,6 +1,8 @@
 #pragma once
 
 #include "glm.hpp"
+#include <memory>
+
 struct GLFWwindow;
 class ObjectRenderer;
 class Camera;
@@ -16,17 +18,17 @@ class InputHandler
 	};
 
 public:
-	InputHandler(GLFWwindow* win, ObjectRenderer* objRenderer, Camera* cam);
+	InputHandler(GLFWwindow* win, std::shared_ptr<ObjectRenderer> objRenderer, std::shared_ptr<Camera> cam, std::shared_ptr<class Scene> inScene);
 
 	InputState GetInputState() const { return inputState; }
-
 	static void SetInputState(InputState newState);
 
 private:
 	GLFWwindow* window;
-	ObjectRenderer* objectRenderer;
-	Object3D* object;
-	Camera* camera;
+	std::shared_ptr<ObjectRenderer> objectRenderer;
+	std::shared_ptr<Object3D> object;
+	std::shared_ptr<Camera> camera;
+	std::shared_ptr<class Scene> scene;
 	InputState inputState;
 	InputState previouseState;
 	

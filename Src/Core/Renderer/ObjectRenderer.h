@@ -4,30 +4,28 @@
 #include <string>
 #include <vector>
 #include <gtc/quaternion.hpp>
-#include "Object/TexturedObject/TexturedObject.h"
-#include "Object/LightSource/LightSource.h"
+#include <memory>
+
 #include "Utilities/Utilities.h"
 #include "Shader/ShaderManager.h"
-
-class Camera;
 
 class ObjectRenderer
 {
 
 public:
-	ObjectRenderer(GLFWwindow* win, Camera* cam);
+	ObjectRenderer(GLFWwindow* win, std::shared_ptr<Camera> cam, std::shared_ptr<class Scene> inScene);
 	void Draw();
 
-	TexturedObject GetObject() const { return cubeObject; }
-	TexturedObject& GetObjectRef() { return cubeObject; }
 private:
 
 	GLFWwindow* window;
-	Camera* camera;
-	TexturedObject cubeObject;
-	LightSource lightSource;
+	std::shared_ptr<class Camera> camera;
+	std::shared_ptr<class Scene> scene;
 	Utilities utilities;
 	ShaderManager shaderManager;
+	std::shared_ptr<class LightSource> lightSource;
+	std::shared_ptr<class Object3D> cubeObject;
+	std::shared_ptr<class InputHandler> inputHandler;
 
 	void DrawObject(Object3D& object);
 };

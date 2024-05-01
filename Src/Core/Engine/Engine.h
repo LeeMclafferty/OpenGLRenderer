@@ -2,9 +2,7 @@
 #include <GL/glew.h>
 #include <string>
 #include <GLFW/glfw3.h>
-#include "ObjectRenderer.h"
-#include "InputHandler.h"
-#include "Camera.h"
+#include <memory>
 
 class Engine
 {
@@ -15,8 +13,9 @@ public:
 
 private:
 	struct GLFWwindow* window;
-	ObjectRenderer objectRenderer;
-	InputHandler inputHandler;
-	Camera camera;
+	std::shared_ptr<class Camera> camera;
+	std::shared_ptr<class Scene> scene;
+	std::shared_ptr<class ObjectRenderer> objectRenderer;
+	std::shared_ptr<class InputHandler> inputHandler;
 };
 

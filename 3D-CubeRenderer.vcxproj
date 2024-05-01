@@ -160,6 +160,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Src\Core\Scene\Scene.cpp" />
     <ClCompile Include="Src\Shader\ShaderManager.cpp" />
     <ClCompile Include="Src\Object\TexturedObject\TexturedObject.cpp" />
     <ClCompile Include="Src\Object\LightSource\LightSource.cpp" />
@@ -176,6 +177,7 @@
     <ClCompile Include="Src\Utilities\Utilities.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Src\Core\Scene\Scene.h" />
     <ClInclude Include="Src\Shader\ShaderManager.h" />
     <ClInclude Include="Src\Object\TexturedObject\TexturedObject.h" />
     <ClInclude Include="Src\Object\LightSource\LightSource.h" />

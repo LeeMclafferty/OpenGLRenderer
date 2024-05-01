@@ -8,18 +8,23 @@
 #include "ObjectRenderer.h"
 #include "Camera.h"
 #include "Object/Object3D.h"
+#include "Core/Scene/Scene.h"
 
 /* Static member functions cannot access non-static members. Creating static pointer to self to access members.*/
 static InputHandler* instance = nullptr;
 
-InputHandler::InputHandler(GLFWwindow* win, ObjectRenderer* objRenderer, Camera* cam)
+InputHandler::InputHandler(GLFWwindow* win, std::shared_ptr<ObjectRenderer> objRenderer, std::shared_ptr<Camera> cam, std::shared_ptr<Scene> inScene)
 	:window(win), objectRenderer(objRenderer), inputState(InputState::defaultInput), camera(cam),
-	object(&objRenderer->GetObjectRef())
+	scene(inScene)
 {
 	instance = this;
 	BindCallbackFuncs();
 	meshRotationSensitivity = 0.1f;
 	meshTranslationSensitivity = 0.5f;
+
+	if (scene) {
+		object = scene->GetObject("Default Cube");
+	}
 }
 
 void InputHandler::SetInputState(InputState newState)
