@@ -18,14 +18,27 @@ Object3D::Object3D()
 	objectForwardVector(glm::vec3(0.f, 0.f, -1)),
 	objectRightVector(glm::vec3(1.f, 0.f, 0.f))
 {
-	size_t vertexCount = PremadeShapes::cubeVertices.size();
-	size_t indexCount = PremadeShapes::cubeIndices.size();
-	SetShapeData(
-		PremadeShapes::cubeVertices, PremadeShapes::cubeIndices,
-		vertexCount, indexCount
-	);
-	SetShaderProgram(CreateShaderProgram("Resources/Shaders/Basic.shader"));
-	CreateShapeOnGPU();
+	Setup();
+	GetMaterial().SetAmbientColor(glm::vec4(1.0f, 0.5f, 0.31f, 1.0f));
+	GetMaterial().SetDiffuseColor(glm::vec4(1.0f, 0.5f, 0.31f, 1.0f));
+	GetMaterial().SetSpecularColor(glm::vec4(0.5f, 0.5f, 0.5f, 1.0f));
+	GetMaterial().SetShininess(32.0f);
+}
+
+Object3D::Object3D(const char* tPath)
+	: shapeData(ShapeData()),
+	bufferManager(BufferManager()),
+	scale(glm::vec3(1.0f, 1.0f, 1.0f)),
+	rotation(glm::quat(0.0f, 0.0f, 0.0f, 0.0f)),
+	position(glm::vec3(0.0f, 0.0f, -3.f)),
+	worldForward(glm::vec3(0.f, 0.f, -1.f)),
+	worldUp(glm::vec3(0.f, 1.f, 0.f)),
+	worldRight(glm::vec3(1.f, 0.f, 0.f)),
+	objectUpVector(glm::vec3(0.f, 1.f, 0.f)),
+	objectForwardVector(glm::vec3(0.f, 0.f, -1)),
+	objectRightVector(glm::vec3(1.f, 0.f, 0.f)),
+	texture(Texture(tPath))
+{
 
 }
 
@@ -103,5 +116,17 @@ GLuint Object3D::CreateShaderProgram(const std::string path)
 		source.vertexSource,
 		source.fragmentSource
 	);
+}
+
+void Object3D::Setup()
+{
+	size_t vertexCount = PremadeShapes::cubeVertices.size();
+	size_t indexCount = PremadeShapes::cubeIndices.size();
+	SetShapeData(
+		PremadeShapes::cubeVertices, PremadeShapes::cubeIndices,
+		vertexCount, indexCount
+	);
+	SetShaderProgram(CreateShaderProgram("Resources/Shaders/Basic.shader"));
+	CreateShapeOnGPU();
 }
 

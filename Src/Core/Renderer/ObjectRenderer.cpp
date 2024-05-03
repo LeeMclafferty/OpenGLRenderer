@@ -5,7 +5,6 @@
 #include <gtc/matrix_transform.hpp>
 #include <GLFW/glfw3.h>
 
-#include "PremadeShapes/PremadeShapes.h"
 #include "Camera.h"
 #include "Time/TimeManager.h"
 #include "Core/Scene/Scene.h"
@@ -32,7 +31,6 @@ void ObjectRenderer::Draw()
 	}
 }
 
-
 void ObjectRenderer::DrawObject(Object3D& object)
 {
 	if (!lightSource || !cubeObject) return;
@@ -40,7 +38,7 @@ void ObjectRenderer::DrawObject(Object3D& object)
 	glUseProgram(object.GetShaderProgram());
 	glBindVertexArray(object.GetVAO());
 	
-	shaderManager.UpdateShaderUniforms(object.GetShaderProgram(), object, window, *lightSource, camera.get());
+	object.GetShaderManager().UpdateShaderUniforms(object.GetShaderProgram(), object, window, *lightSource, camera.get());
 
 	object.TransformObject();
 	glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);

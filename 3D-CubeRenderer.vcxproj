@@ -160,9 +160,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Src\Material\Material.cpp" />
     <ClCompile Include="Src\Core\Scene\Scene.cpp" />
     <ClCompile Include="Src\Shader\ShaderManager.cpp" />
-    <ClCompile Include="Src\Object\TexturedObject\TexturedObject.cpp" />
     <ClCompile Include="Src\Object\LightSource\LightSource.cpp" />
     <ClCompile Include="Src\Object\Object3D.cpp" />
     <ClCompile Include="Src\Core\Camera\Camera.cpp" />
@@ -177,9 +177,9 @@
     <ClCompile Include="Src\Utilities\Utilities.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Src\Material\Material.h" />
     <ClInclude Include="Src\Core\Scene\Scene.h" />
     <ClInclude Include="Src\Shader\ShaderManager.h" />
-    <ClInclude Include="Src\Object\TexturedObject\TexturedObject.h" />
     <ClInclude Include="Src\Object\LightSource\LightSource.h" />
     <ClInclude Include="Src\Object\Object3D.h" />
     <ClInclude Include="Src\Core\Camera\Camera.h" />

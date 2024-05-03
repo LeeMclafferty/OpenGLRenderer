@@ -4,15 +4,10 @@
 LightSource::LightSource()
 	:color(glm::vec4(1.0f, 1.0f, 1.0f, 1.0f))
 {
-	size_t vertexCount = PremadeShapes::lightSource.size();
-	size_t indexCount = PremadeShapes::cubeIndices.size();
-	SetShapeData(
-		PremadeShapes::lightSource, PremadeShapes::cubeIndices,
-		vertexCount, indexCount
-	);
-	SetShaderProgram(CreateShaderProgram("Resources/Shaders/LightSource.shader"));
-	SetScale(glm::vec3(0.2f, 0.2f, 0.2f));
-	CreateShapeOnGPU();
+	Setup();
+	GetMaterial().SetAmbientColor(glm::vec4(0.2f, 0.2f, 0.2f, 1.0f));
+	GetMaterial().SetDiffuseColor(glm::vec4(0.5f, 0.5f, 0.5f, 1.0f));
+	GetMaterial().SetSpecularColor(glm::vec4(1.0f, 1.0f, 1.0f, 1.0f));
 }
 
 void LightSource::Orbit(const glm::vec3& centerVec, float orbitRadius, float deltaTime, float speed)
@@ -34,4 +29,17 @@ void LightSource::Orbit(const glm::vec3& centerVec, float orbitRadius, float del
 	orbitingVec.z = centerVec.z + orbitRadius * sin(angle);
 
 	SetPosition(orbitingVec);
+}
+
+void LightSource::Setup()
+{
+	size_t vertexCount = PremadeShapes::lightSource.size();
+	size_t indexCount = PremadeShapes::cubeIndices.size();
+	SetShapeData(
+		PremadeShapes::lightSource, PremadeShapes::cubeIndices,
+		vertexCount, indexCount
+	);
+	SetShaderProgram(CreateShaderProgram("Resources/Shaders/LightSource.shader"));
+	SetScale(glm::vec3(0.2f, 0.2f, 0.2f));
+	CreateShapeOnGPU();
 }

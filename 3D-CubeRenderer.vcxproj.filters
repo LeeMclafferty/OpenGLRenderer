@@ -48,9 +48,6 @@
     <ClCompile Include="Src\Object\LightSource\LightSource.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Src\Object\TexturedObject\TexturedObject.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Src\Utilities\Utilities.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -58,6 +55,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Src\Core\Scene\Scene.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Material\Material.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -101,9 +101,6 @@
     <ClInclude Include="Src\Object\LightSource\LightSource.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Src\Object\TexturedObject\TexturedObject.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Src\Utilities\Utilities.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -111,6 +108,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Src\Core\Scene\Scene.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Material\Material.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

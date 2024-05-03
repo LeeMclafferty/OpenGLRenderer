@@ -4,8 +4,12 @@
 #include <gtc/quaternion.hpp>
 #include <vector>
 #include <string>
+
 #include "Object/Components/BufferManager.h"
 #include "PremadeShapes/ShapeData.h"
+#include "Texture/Texture.h"
+#include "Shader/ShaderManager.h"
+#include "Material/Material.h"
 
 struct Vertex;
 
@@ -13,9 +17,12 @@ class Object3D
 {
 public:
 	Object3D();
-	glm::mat4 GetTransformationMatrix() const;
+	Object3D(const char* tPath);
+
+
 
 	// Getters
+	glm::mat4 GetTransformationMatrix() const;
 	glm::vec3 GetScale() const { return scale; }
 	glm::quat GetRotation() const { return rotation; }
 	glm::vec3 GetPosition() const { return position; }
@@ -26,12 +33,20 @@ public:
 	GLuint GetEBO() { return bufferManager.GetEBO(); }
 	GLuint GetShaderProgram() { return bufferManager.GetShaderProgram(); }
 
+	Texture GetTexture() { return texture; }
+
+	ShaderManager GetShaderManager() const { return shaderManager; }
+
+	Material GetMaterial() const { return material; }
+
 	// Setters
 	void SetScale(const glm::vec3& inScale) { scale = inScale; }
 	void SetRotation(const glm::quat& inRotation) { rotation = inRotation; }
 	void SetPosition(const glm::vec3& translation) { position = translation; }
 	void SetShapeData(std::vector<Vertex> verticies, std::vector<GLuint> indicies, size_t vertexCount, size_t indexCount);
 	void SetShaderProgram(GLuint program) { bufferManager.SetShaderProgram(program); }
+	
+	void SetTexture(Texture tex) { texture = tex; }
 
 	// Additive to current transforms
 	void AddScale(glm::vec3 inScale) { scale += inScale; }
@@ -50,6 +65,9 @@ private:
 	
 	ShapeData shapeData;
 	BufferManager bufferManager;
+	ShaderManager shaderManager;
+	Texture texture;
+	Material material;
 
 	// World Space
 	glm::vec3 scale;
@@ -63,5 +81,7 @@ private:
 	glm::vec3 objectUpVector;
 	glm::vec3 objectForwardVector;
 	glm::vec3 objectRightVector;
+
+	void Setup();
 };
 

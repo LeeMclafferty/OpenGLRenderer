@@ -108,9 +108,15 @@ void ShaderManager::SetUniformVec4(GLuint shader, std::string uniformName, glm::
 
 void ShaderManager::SetUniformSampler2D(GLuint shader, std::string uniformName)
 {
-	int textureUniformLoc = glGetUniformLocation(shader, uniformName.c_str());
+	GLint textureUniformLoc = glGetUniformLocation(shader, uniformName.c_str());
 	glUseProgram(shader);
 	glUniform1i(textureUniformLoc, 0); // Always using index 0 for now
+}
+
+void ShaderManager::SetUniformFloat(GLuint shader, std::string uniformname, float value)
+{
+	GLint floatUniformLoc = glGetUniformLocation(shader, uniformname.c_str());
+	glUniform1f(floatUniformLoc, value);
 }
 
 unsigned int ShaderManager::CompileShader(unsigned int glType, const std::string& source)
@@ -176,6 +182,15 @@ void ShaderManager::UpdateShaderUniforms(GLuint shaderProgram, Object3D& object,
 	SetUniformSampler2D(shaderProgram, "textureImg");
 	SetUniformVec3(shaderProgram, "lightPos", lightSource.GetPosition());
 	SetUniformVec3(shaderProgram, "cameraPos", camera->GetGlobalPosition());
+
+	SetUniformVec4(shaderProgram, "material.ambient", object.GetMaterial().GetAmbientColor());
+	SetUniformVec4(shaderProgram, "material.diffuse", object.GetMaterial().GetDiffuseColor());
+	SetUniformVec4(shaderProgram, "material.specular", object.GetMaterial().GetSpecularColor());
+	SetUniformFloat(shaderProgram,"material.shininess", object.GetMaterial().GetShininess());
+
+	SetUniformVec4(shaderProgram, "light.ambient", lightSource.GetMaterial().GetAmbientColor());
+	SetUniformVec4(shaderProgram, "light.diffuse", lightSource.GetMaterial().GetDiffuseColor());
+	SetUniformVec4(shaderProgram, "light.specular", lightSource.GetMaterial().GetSpecularColor());
 
 	glm::mat4 modelMatrix = object.GetTransformationMatrix();
 	glm::mat3 normalMatrix = glm::transpose(glm::inverse(glm::mat3(modelMatrix)));

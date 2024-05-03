@@ -12,6 +12,7 @@ public:
 	void SetColor(glm::vec4 inColor) { color = inColor; }
 	void Orbit(const glm::vec3& centerVec, float orbitRadius, float deltaTime, float speed);
 private:
+	void Setup();
 	glm::vec4 color;
 };
 

@@ -30,6 +30,7 @@ public:
 	void SetUniformVec3(GLuint shader, std::string uniformName, glm::vec3 vector3);
 	void SetUniformVec4(GLuint shader, std::string uniformName, glm::vec4 vector4);
 	void SetUniformSampler2D(GLuint shader, std::string uniformName);
+	void SetUniformFloat(GLuint shader, std::string uniformname, float value);
 	unsigned int CompileShader(unsigned int glType, const std::string& source);
 	GLuint CreateShader(const std::string& vertexShader, const std::string& fragmentShader);
 	void UpdateShaderUniforms(GLuint shaderProgram, Object3D& object, GLFWwindow* win, LightSource& lightSource, Camera* camera);
